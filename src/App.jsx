@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
-import Register from "./pages/Register";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
-import UserDashboard from "./pages/userDashboard/UserDashboard";
 import Preloader from "./pages/preloader/Preloader";
-import VerifyEmail from "./pages/verifyEmail";
-import CheckEmail from "./pages/confirmation/checkEmail";
-import ConfirmEmail from "./pages/confirmation/ConfirmEmail";
+import LoginSignup from "./pages/LoginSignUp/LoginSignUp";
 
 const App = () => {
   return (
@@ -43,12 +38,7 @@ const MainRoutes = () => {
       ) : (
         <Routes location={location}>
           <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/check-email" element={<CheckEmail />} />
-          <Route path="/confirm-email" element={<ConfirmEmail />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/verify-email" element={<VerifyEmail />} />
-          <Route path="/user-dashboard" element={<UserDashboard />} />
+          <Route path="/register" element={<LoginSignup />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       )}

@@ -1,19 +1,16 @@
-import React from "react";
 import "./Hero.css";
 
 const Hero = () => {
   return (
     <div className="hero container">
       <div className="hero-text">
-        <h1>Promoting Integrity and Transparency</h1>
+        <h1>Pay As You Go</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia qui
-          vitae saepe iure ut. Dolorum iusto labore fugiat eligendi vero soluta
-          aperiam atque esse ipsum maxime earum tempora, voluptatem ab.
+          Invest in your health, whenever and wherever.
         </p>
         <button className="btn">
-          <a href="/register" className="nav__link-button">
-            Go to E-PORTAL <i className="bx bx-log-in"></i>
+          <a href="/register" className="link-button">
+            GET STARTED <i className="bx bx-log-in"></i>
           </a>
         </button>
       </div>

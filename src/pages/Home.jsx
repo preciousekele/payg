@@ -1,9 +1,7 @@
-import React from "react";
-import logo from './images/logo.png';
+import logo from './images/Logopagy.png';
 import "boxicons";
 import "boxicons/css/boxicons.min.css";
 import "./home.css";
-import GoalFeatures from './goal/Goal';
 import Hero from './hero/Hero';
 
 const Header = () => {
@@ -23,20 +21,25 @@ const Header = () => {
               <img src={logo} alt="logo" />
             </span>
             <span className="nav__logo-name">
-              MCPHERSON UNIVERSITY DISCIPLINARY RECORD SYSTEM
+            PayG
             </span>
           </a>
 
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
-                <a href="#home" className="nav__link active-link">
+                <a href="#home" className="nav__link active-link" >
                   Home
                 </a>
               </li>
-              <li className="nav__item">
-                <a href="#" className="nav__link">
+              <li className="nav__item" >
+                <a href="#" className="nav__link" >
                   About
+                </a>
+              </li>
+              <li className="nav__item" >
+                <a href="#" className="nav__link" >
+                  Packages
                 </a>
               </li>
               <li className="nav__item" >
@@ -44,7 +47,7 @@ const Header = () => {
                   href="/register"
                   className="nav__link-button"
                 >
-                  E-PORTAL <i className="bx bx-log-in"></i>
+                   <i className="bx bx-log-in"></i>
                 </a>
               </li>
             </ul>
@@ -56,7 +59,6 @@ const Header = () => {
         </nav>
       </header>
       <Hero/>
-      {/* <GoalFeatures/> */}
     </div>
   );
 };
