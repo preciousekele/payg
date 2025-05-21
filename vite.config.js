@@ -13,5 +13,6 @@ export default defineConfig({
   server: {
     port: 3005,
     open: true,
+    historyApiFallback: true, // handled by router
   },
 });
