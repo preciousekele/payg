@@ -9,7 +9,7 @@ const Hero = () => {
           Invest in your health, whenever and wherever.
         </p>
         <button className="btn">
-          <a href="/register" className="link-button">
+          <a href="/PayG/register" className="link-button">
             GET STARTED <i className="bx bx-log-in"></i>
           </a>
         </button>

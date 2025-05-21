@@ -1,5 +1,11 @@
-import  { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Preloader from "./pages/preloader/Preloader";
 import LoginSignup from "./pages/LoginSignUp/LoginSignUp";
@@ -27,9 +33,9 @@ const MainRoutes = () => {
     }
   }, []);
 
-  // Correct path check (Option 2)
-  const allowedPaths = ["/", "/register", "/login"];
-  const isInitialLoad = allowedPaths.includes(location.pathname) && showPreloader;
+  const allowedPaths = ["/", "/PayG/register", "/login"];
+  const isInitialLoad =
+    allowedPaths.includes(location.pathname) && showPreloader;
 
   return (
     <>
@@ -37,9 +43,9 @@ const MainRoutes = () => {
         <Preloader />
       ) : (
         <Routes location={location}>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<LoginSignup />} />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/PayG/" element={<Home />} />
+          <Route path="/PayG/register" element={<LoginSignup />} />
+          <Route path="*" element={<Navigate to="/PayG/" />} />
         </Routes>
       )}
     </>
