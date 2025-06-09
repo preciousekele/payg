@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import logo from "./images/Logopagy.png";
 import "boxicons";
 import "boxicons/css/boxicons.min.css";
@@ -18,6 +19,13 @@ const Header = () => {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -42,24 +50,45 @@ const Header = () => {
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
-                <a href="#" className="nav__link active-link">
+                <a 
+                  href="#home" 
+                  className="nav__link active-link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('home');
+                  }}
+                >
                   Home
                 </a>
               </li>
               <li className="nav__item">
-                <a href="#about" className="nav__link">
+                <a 
+                  href="#about" 
+                  className="nav__link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('about');
+                  }}
+                >
                   About
                 </a>
               </li>
               <li className="nav__item">
-                <a href="#packages" className="nav__link">
+                <a 
+                  href="#packages" 
+                  className="nav__link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('packages');
+                  }}
+                >
                   Packages
                 </a>
               </li>
               <li className="nav__item">
-                {/* <a href="/PayG/register" className="nav__link-button">
+                {/* <Link to="/register" className="nav__link-button">
                   <i className="bx bx-log-in"></i>
-                </a> */}
+                </Link> */}
               </li>
             </ul>
           </div>
@@ -81,33 +110,63 @@ const Header = () => {
         </div>
         <ul className="mobile-nav__list">
           <li className="mobile-nav__item">
-            <a href="#home" className="mobile-nav__link" onClick={closeMenu}>
+            <a 
+              href="#home" 
+              className="mobile-nav__link" 
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('home');
+                closeMenu();
+              }}
+            >
              Home
             </a>
           </li>
           <li className="mobile-nav__item">
-            <a href="#about" className="mobile-nav__link" onClick={closeMenu}>
+            <a 
+              href="#about" 
+              className="mobile-nav__link" 
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('about');
+                closeMenu();
+              }}
+            >
               About
             </a>
           </li>
           <li className="mobile-nav__item">
-            <a href="#packages" className="mobile-nav__link" onClick={closeMenu}>
+            <a 
+              href="#packages" 
+              className="mobile-nav__link" 
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('packages');
+                closeMenu();
+              }}
+            >
              Packages
             </a>
           </li>
           <li className="mobile-nav__item">
-            <a href="/PayG/register" className="mobile-nav__link-button" onClick={closeMenu}>
+            <Link to="/register" className="mobile-nav__link-button" onClick={closeMenu}>
               Get Started
               <i className="bx bx-log-in"></i> 
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
       
-      <Hero />
-      <About />
+      <div id="home">
+        <Hero />
+      </div>
+      <div id="about">
+        <About />
+      </div>
       <Goals />
-      <Packages />
+      <div id="packages">
+        <Packages />
+      </div>
       <Footer />
     </div>
   );

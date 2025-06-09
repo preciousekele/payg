@@ -16,13 +16,13 @@ const Services = () => {
 
   const handleServiceClick = (serviceId) => {
     if (serviceId === "airtime") {
-      navigate("/PayG/userdashboard/airtime");
+      navigate("/userdashboard/airtime");
     } else if (serviceId === "send-money") {
-      navigate("/PayG/userdashboard/transfer");
+      navigate("/userdashboard/transfer");
     } else if (serviceId === "card") {
-      navigate("/PayG/userdashboard/card"); 
+      navigate("/userdashboard/card");
     } else if (serviceId === "investment") {
-      navigate("/PayG/userdashboard/investment");
+      navigate("/userdashboard/investment");
     } else {
       console.log(`${serviceId} clicked`);
     }

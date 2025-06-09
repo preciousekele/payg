@@ -69,7 +69,7 @@ const Sidebar = () => {
 
         {/* Logout Section */}
         <div className="logout-section">
-          <Link to="/PayG/register">
+          <Link to="/register">
             <motion.div 
               className="logout-item" 
               whileHover={{ scale: isMobile ? 1.02 : 1.05 }}

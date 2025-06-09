@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   Route,
   Navigate,
@@ -19,7 +19,7 @@ import Account from "./pages/userdashboard/account/Account";
 import Transaction from "./pages/userdashboard/transaction/Transaction";
 import InsurancePackages from "./pages/userdashboard/Home/packages/Packages";
 import Investment from "./pages/userdashboard/Home/investment/Investment";
-// Dashboard Layout (wraps UserDashboard and nested routes with Sidebar)
+
 const DashboardLayout = () => {
   return (
     <div className="flex h-screen overflow-hidden">
@@ -54,22 +54,23 @@ const MainRoutes = () => {
     }
   }, []);
 
-  const allowedPaths = ["/", "/PayG/register", "/login"];
+  const allowedPaths = ["/", "/register", "/login"];
   const isInitialLoad =
     allowedPaths.includes(location.pathname) && showPreloader;
 
-return (
+  return (
     <>
       {isInitialLoad ? (
         <Preloader />
       ) : (
         <Routes location={location}>
           {/* Public routes */}
-          <Route path="/PayG/" element={<Home />} />
-          <Route path="/PayG/register" element={<LoginSignup />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<LoginSignup />} />
+          <Route path="/login" element={<LoginSignup />} />
 
           {/* Dashboard routes - Nested approach */}
-          <Route path="/PayG/userdashboard" element={<DashboardLayout />}>
+          <Route path="/userdashboard" element={<DashboardLayout />}>
             <Route index element={<UserDashboard />} />
             <Route path="home" element={<UserDashboard />} />
             <Route path="transaction" element={<Transaction />} />
@@ -82,7 +83,7 @@ return (
           </Route>
 
           {/* Fallback */}
-          <Route path="*" element={<Navigate to="/PayG/" />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       )}
     </>

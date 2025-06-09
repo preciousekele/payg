@@ -56,7 +56,7 @@ function LoginSignup() {
         console.log("Login successful, user data stored:", response.data.user);
 
         // Navigate to dashboard
-        navigate("/PayG/userdashboard");
+        navigate("/userdashboard");
       } else {
         alert("Login failed: Invalid response");
       }
@@ -107,7 +107,7 @@ function LoginSignup() {
         console.log("Registration successful, user data stored:", response.data.user);
 
         // Navigate to dashboard
-        navigate("/PayG/userdashboard");
+        navigate("/userdashboard");
       } else {
         alert("Registration failed: Invalid response");
       }

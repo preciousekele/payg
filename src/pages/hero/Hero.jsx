@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Hero.css";
 
 const Hero = () => {
@@ -9,9 +10,9 @@ const Hero = () => {
           Invest in your health, whenever and wherever.
         </p>
         <button className="btn">
-          <a href="/PayG/register" className="link-button">
+          <Link to="/register" className="link-button">
             GET STARTED <i className="bx bx-log-in"></i>
-          </a>
+          </Link>
         </button>
       </div>
     </div>
