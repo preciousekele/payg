@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/payg/Logopagy.png" type="image/png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PayG</title>
+    <script type="text/javascript">
+      // Handle redirect from the 404.html page
+      (function() {
+        // Parse the URL query parameters
+        const query = window.location.search.substr(1);
+        const params = {};
+        query.split('&').forEach(function(param) {
+          const pair = param.split('=');
+          params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+        });
+
+        // If we have a redirect parameter, navigate to that path
+        if (params.redirect) {
+          const redirectPath = params.redirect;
+          window.history.replaceState(null, null, '/PayG/' + redirectPath);
+        }
+
+        // Check for stored path in localStorage as fallback
+        const storedPath = window.localStorage.getItem('redirect_path');
+        if (storedPath && !params.redirect) {
+          window.localStorage.removeItem('redirect_path');
+          window.history.replaceState(null, null, '/PayG/' + storedPath);
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/payg/assets/index-BLhShvkh.js"></script>
+    <link rel="stylesheet" crossorigin href="/payg/assets/index-PU6MDeU2.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
