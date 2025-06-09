@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+/* Restore form styles after Tailwind import */
+input {
+  all: revert;
+}
+
+button {
+  all: revert;
+}
+
+/* Or more specifically target your login form */
+.login-form input,
+.login-form button {
+  all: revert;
+}

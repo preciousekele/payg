@@ -1,0 +1,110 @@
+.receipt-container {
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  padding: 10px;
+}
+
+.receipt-header {
+  padding: 20px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #374151;
+}
+
+.back-button:hover {
+  color: #111827;
+}
+
+.receipt-content {
+  padding: 20px;
+}
+
+.receipt-amount-section {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.amount-label {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.receipt-amount {
+  font-size: 32px;
+  font-weight: bold;
+  color: #054533;
+  margin: 0;
+}
+
+.receipt-status-section {
+  margin-bottom: 24px;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.status-label {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.success {
+  background-color: #d1fae5;
+  color: #054533;
+}
+
+.status-badge.failed {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.receipt-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.detail-label {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.detail-value {
+  color: #054533;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: right;
+  max-width: 60%;
+  word-break: break-word;
+}

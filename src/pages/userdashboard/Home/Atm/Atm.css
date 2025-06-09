@@ -1,0 +1,326 @@
+/* ATM Container */
+.atm-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 6rem;
+  font-family: Arial, sans-serif;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #08593e;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  gap: 10px;
+  font-weight: 500;
+}
+
+/* Amount Form Styles */
+.amount-form-container {
+  margin-bottom: 30px;
+}
+
+.amount-form {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.amount-label {
+  display: block;
+  color: #333;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.exact-amount {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.amount-input-container {
+  margin-top: 10px;
+}
+
+.amount-label-small {
+  display: block;
+  color: #097f58;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.amount-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.amount-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.amount-input::placeholder {
+  color: #999;
+}
+
+.currency {
+  color: #097f58;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Payment Tab */
+.payment-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab.active {
+  color: #097f58;
+  border-bottom-color: #097f58;
+}
+
+.tab:hover {
+  color: #097f58;
+}
+
+/* Card Form */
+.card-form-container {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 30px;
+  background-color: white;
+  margin-top: 20px;
+}
+
+.card-input-group {
+  margin-bottom: 25px;
+}
+
+.card-label {
+  display: block;
+  color: #666;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-input-wrapper {
+  position: relative;
+}
+
+.card-input {
+  width: 100%;
+  padding: 15px 40px 15px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f8f9fa;
+  outline: none;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.card-input:focus {
+  border-color: #097f58;
+  background-color: white;
+}
+
+.card-input::placeholder {
+  color: #999;
+}
+
+.card-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.card-row {
+  display: flex;
+  gap: 20px;
+}
+
+.card-row .card-input-group {
+  flex: 1;
+}
+
+.pay-button {
+  width: 100%;
+  background-color: #e0e0e0;
+  color: #999;
+  border: none;
+  padding: 15px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.pay-button:hover {
+  background-color: #097f58;
+  color: white;
+}
+
+/* PIN Input Styles */
+.pin-container {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.pin-header {
+  margin-bottom: 30px;
+}
+
+.pin-content {
+  text-align: center;
+}
+
+.pin-title {
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.pin-dots-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.pin-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ddd;
+  transition: background-color 0.3s ease;
+}
+
+.pin-dot.filled {
+  background-color: #333;
+}
+
+.pin-keypad {
+  margin-bottom: 40px;
+}
+
+.keypad-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.keypad-btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #097f58;
+  background-color: white;
+  color: #097f58;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.keypad-btn:hover {
+  background-color: #f0f8ff;
+}
+
+.keypad-btn:active {
+  background-color: #097f58;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+  border-color: #e74c3c;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+.clear-btn {
+  background-color: #f39c12;
+  color: white;
+  border-color: #f39c12;
+}
+
+.clear-btn:hover {
+  background-color: #e67e22;
+}
+
+.verify-button {
+  width: 100%;
+  background-color: #e0e0e0;
+  color: #999;
+  border: none;
+  padding: 15px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.verify-button:hover {
+  background-color: #097f58;
+  color: white;
+}
+
+.go-back-button {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.go-back-button:hover {
+  color: #097f58;
+}

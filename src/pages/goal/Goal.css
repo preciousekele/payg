@@ -1,0 +1,143 @@
+:root {
+  --white-smoke: #f5f5f5;
+  --moon-yellow: #f4c430;
+}
+
+#goals {
+  background-color: var(--white-smoke);
+  padding: 80px 0;
+}
+
+#goals .container {
+  padding: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.text-center {
+  text-align: center;
+}
+
+#goals .col-md-4 {
+  width: 33.333%;
+  padding: 0 20px;
+  transition: all 1s;
+  box-sizing: border-box;
+}
+
+.goal-item {
+  background-color: white;
+  padding: 50px 20px;
+  box-shadow: 0 0 20px -6px grey; 
+  -moz-box-shadow: 0 0 20px -6px grey;
+  -webkit-box-shadow: 0 0 20px -6px grey;
+  transition: all 280ms ease-in;
+  -moz-transition: all 280ms ease-in;
+  -webkit-transition: all 280ms ease-in;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.goal-item i {
+  transition: all 300ms;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.goal-item h3 {
+  letter-spacing: 3px;
+  margin: 20px 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.goal-item hr {
+  background-color: var(--moon-yellow);
+  width: 50px;
+  height: 3px;
+  border: none;
+  margin: 20px auto;
+}
+
+.goal-item p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #666;
+  margin: 20px 0 0 0;
+}
+
+#goals .col-md-4:hover {
+   transform: scale(1.02);
+   /* padding: 0 10px;  */
+}
+
+.goal-item:hover {
+  background-color: var(--moon-yellow);
+  box-shadow: 0 0 24px yellow;
+  color: white;
+  padding: 50px 30px;
+}
+
+.goal-item:hover i {
+  transform: translateY(-18px);
+  color: white;
+}
+
+.goal-item:hover h3 {
+  font-weight: bold;
+  color: white;
+}
+
+.goal-item:hover hr {
+  background-color: white;
+}
+
+.goal-item:hover p {
+  color: white;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  #goals .col-md-4 {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  #goals .col-md-4:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  #goals {
+    padding: 60px 0;
+  }
+  
+  .goal-item {
+    padding: 40px 20px;
+  }
+  
+  .goal-item:hover {
+    padding: 40px 25px;
+  }
+  
+  .goal-item h3 {
+    font-size: 1.3rem;
+  }
+  
+  .fa-4x {
+    font-size: 3em;
+  }
+}

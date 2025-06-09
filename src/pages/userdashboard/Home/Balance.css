@@ -1,0 +1,122 @@
+.balance-card {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 16px;
+  padding: 24px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: min(95%, 1200px);
+  margin: 2rem auto 30px auto;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+}
+
+.balance-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.balance-label {
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+.balance-amount {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.add-money-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.add-money-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+@media (max-width: 1440px) {
+  .balance-card {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 16px;
+  padding: 24px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: min(95%, 1200px); /* Responsive width with max limit */
+  margin: 2rem auto 24px auto;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+}  
+}
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .balance-card {
+    width: 95%;
+    padding: 20px;
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+    text-align: center;
+  }
+  
+  .balance-info {
+    align-items: center;
+  }
+  
+  .balance-amount {
+    font-size: 28px;
+  }
+  
+  .add-money-btn {
+    justify-content: center;
+    padding: 14px 20px;
+  }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+  .balance-card {
+    width: 92%;
+    padding: 16px;
+    margin: 1rem auto 20px auto;
+  }
+  
+  .balance-label {
+    font-size: 14px;
+  }
+  
+  .balance-amount {
+    font-size: 26px;
+  }
+  
+  .add-money-btn {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+}
+
+/* Large Screen Styles */
+@media (min-width: 1200px) {
+  .balance-card {
+    max-width: 800px;
+    padding: 28px;
+  }
+  
+  .balance-amount {
+    font-size: 28px;
+  }
+}

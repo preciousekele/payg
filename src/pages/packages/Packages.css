@@ -1,0 +1,257 @@
+/* Packages.css */
+
+.packages-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.packages-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.packages-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 1rem;
+}
+
+.packages-header p {
+  font-size: 1.2rem;
+  color: #718096;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.package-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.package-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Color schemes */
+.package-card.bronze {
+  border: 3px solid #cd7f32;
+  box-shadow: 0 4px 20px rgba(205, 127, 50, 0.15);
+}
+
+.package-card.silver {
+  border: 3px solid #c0c0c0;
+  box-shadow: 0 4px 20px rgba(192, 192, 192, 0.15);
+}
+
+.package-card.gold {
+  border: 3px solid #ffd700;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.15);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.package-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.package-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+}
+
+.package-icon.bronze {
+  background: linear-gradient(135deg, #cd7f32, #b8722c);
+}
+
+.package-icon.silver {
+  background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+}
+
+.package-icon.gold {
+  background: linear-gradient(135deg, #ffd700, #e6c200);
+}
+
+.package-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+}
+
+.package-description {
+  color: #718096;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: -1rem;
+}
+
+.package-pricing {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a202c;
+}
+
+.period {
+  font-size: 1.1rem;
+  color: #718096;
+  font-weight: 500;
+}
+
+.package-features {
+  flex-grow: 1;
+  margin-bottom: 2rem;
+}
+
+.package-features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.package-features li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: #4a5568;
+  font-size: 1rem;
+}
+
+.check-icon {
+  color: #48bb78;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.package-button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.package-button.bronze {
+  background: linear-gradient(135deg, #cd7f32, #b8722c);
+}
+
+.package-button.bronze:hover {
+  background: linear-gradient(135deg, #b8722c, #a0621f);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(205, 127, 50, 0.3);
+}
+
+.package-button.silver {
+  background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+}
+
+.package-button.silver:hover {
+  background: linear-gradient(135deg, #a8a8a8, #909090);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(192, 192, 192, 0.3);
+}
+
+.package-button.gold {
+  background: linear-gradient(135deg, #ffd700, #e6c200);
+}
+
+.package-button.gold:hover {
+  background: linear-gradient(135deg, #e6c200, #ccad00);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+}
+
+/* Popular card special effects */
+.package-card.popular {
+  position: relative;
+  z-index: 2;
+}
+
+.package-card.popular:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 50px rgba(192, 192, 192, 0.25);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .packages-container {
+    padding: 2rem 1rem;
+  }
+  
+  .packages-header h2 {
+    font-size: 2rem;
+  }
+  
+  .packages-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .package-card {
+    padding: 1.5rem;
+  }
+  
+  .price {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .packages-header h2 {
+    font-size: 1.75rem;
+  }
+  
+  .package-name {
+    font-size: 1.5rem;
+  }
+  
+  .price {
+    font-size: 2rem;
+  }
+}

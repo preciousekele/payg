@@ -1,0 +1,174 @@
+.transfer-payment-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 6rem;
+  font-family: Arial, sans-serif;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #08593e;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  gap: 10px;
+  font-weight: 500;
+}
+
+h2 {
+  color: #097f58;
+  margin-bottom: 15px;
+}
+
+.instructions {
+  color: #666;
+  margin-bottom: 30px;
+  margin-top: 40px;
+  font-size: 15px;
+}
+
+.bank-details-container {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.bank-detail-item {
+  margin-bottom: 20px;
+}
+
+.detail-label {
+  display: block;
+  color: #097f58;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.detail-value-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail-value {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.copy-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #097f58;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+/* Amount Form Styles */
+.amount-form-container {
+  margin-bottom: 30px;
+}
+
+.amount-form {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.amount-label {
+  display: block;
+  color: #333;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.exact-amount {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.amount-input-container {
+  margin-top: 10px;
+}
+
+.amount-label-small {
+  display: block;
+  color: #097f58;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.amount-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid #ddd;
+}
+
+.amount-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.amount-input::placeholder {
+  color: #999;
+}
+
+.currency {
+  color: #097f58;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.transfer-notice-container {
+  margin-top: 30px;
+  text-align: center;
+}
+.refund-notice {
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 25px;
+}
+
+.note-label {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.confirm-transfer-button {
+  background-color: white;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 12px 30px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+  transition: all 0.3s ease;
+}
+
+.confirm-transfer-button:hover {
+  background-color: #f8f9fa;
+  border-color: #097f58;
+}
+
+.confirm-transfer-button:active {
+  background-color: #097f58;
+  color: white;
+}

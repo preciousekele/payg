@@ -1,0 +1,136 @@
+:root {
+  --moon-yellow: #f4c430;
+}
+
+#about {
+  position: relative;
+}
+
+#about::before {
+  content: '';
+  background-image: url('https://cdn.prod.website-files.com/615f415173b71a5211e28de7/6698e339265b477306dd89ba_blob%20testimonials.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: 0;
+  opacity: 0.79;
+  position: absolute;
+  inset: 0% 0% 0% 10%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+  
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px
+}
+
+.col-md-6 {
+  width: 50%;
+  padding: 0 15px;
+}
+
+.col-md-12 {
+  width: 100%;
+  padding: 0 15px;
+}
+
+.vertical-text {
+  position: relative;
+  margin-top: 3rem;
+}
+
+.vertical-text h4 {
+  color: var(--moon-yellow);
+  word-spacing: 7px;
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  position: absolute;
+  top: 40px;
+  left: -40px;
+  font-weight: bold;
+  font-size: 1.8em;
+  margin: 0;
+}
+
+.vertical-text h2 {
+  font-size: 3.5em;
+  margin-left: 80px;
+  line-height: 1.25;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.vertical-text h2 b {
+  color: rgb(7, 99, 28);
+}
+
+#about p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 1em;
+  margin-bottom: 1rem;
+}
+
+#about .bold{
+  font-size: 1.3rem;
+  color: rgb(7, 99, 28);
+}
+
+#about img {
+  margin: 3rem auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-top: -25px;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  .col-md-6 {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+ 
+  #about p:first-child {
+    margin-top: 5rem;
+  }
+ 
+  .vertical-text h4 {
+    top: 34px;
+  }
+ 
+  .vertical-text h2 {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-width: 768px) {
+  .vertical-text h4 {
+    position: static;
+    transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+ 
+  .vertical-text h2 {
+    margin-left: 0;
+    text-align: center;
+    font-size: 2em;
+  }
+ 
+  #about img {
+    margin: 2rem auto;
+  }
+}

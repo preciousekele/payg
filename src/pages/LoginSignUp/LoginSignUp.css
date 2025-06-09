@@ -81,7 +81,7 @@
   align-items: center;
   justify-content: center;
   width: 512px;
-  height: 420px;
+  height: 490px;
   overflow: hidden;
   z-index: 2;
 }
@@ -216,7 +216,7 @@
   }
 
   .login-signup-nav-menu-btn {
-    display: block;
+    display: none;
   }
 
   .login-signup-nav-menu-btn i {
@@ -239,7 +239,7 @@
   }
   .login-signup-form-box {
     width: 100%;
-    height: 500px;
+    height: 550px;
   }
 
   .login-signup-register-container,
