@@ -4,18 +4,25 @@ import path from 'path';
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  base: '/payg/', 
+  // For Vercel deployment - no base path needed
   plugins: [
     tailwindcss(),
-    react()],
+    react()
+  ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': path.resolve(import.meta.dirname, './src'),
     },
   },
   server: {
     port: 3005,
     open: true,
-    historyApiFallback: true, 
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
   },
 });

@@ -171,7 +171,7 @@ const Airtime = () => {
       <div className="airtime-header">
         <button
           className="back-button"
-          onClick={() => navigate("/PayG/userdashboard/home")}
+          onClick={() => navigate("/userdashboard/home")}
         >
           <ArrowLeft size={20} />
         </button>

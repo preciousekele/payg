@@ -80,7 +80,7 @@ const Card = () => {
 
   return (
     <div className="atm-container">
-      <button className="back-button" onClick={() => navigate("/PayG/userdashboard/home")}>
+      <button className="back-button" onClick={() => navigate("/userdashboard/home")}>
         <ArrowLeft /> Card Payment
       </button>
 

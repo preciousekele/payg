@@ -102,7 +102,7 @@ const Packages = () => {
 
                 <button
                   className={`package-button ${pkg.color}`}
-                  onClick={() => navigate("/PayG/register")}
+                  onClick={() => navigate("/register")}
                 >
                   Get Started
                 </button>

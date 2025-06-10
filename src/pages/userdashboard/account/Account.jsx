@@ -123,7 +123,7 @@ const Account = () => {
     if (item.id === 'logout') {
       return (
         <Link 
-          to="/PayG/register" 
+          to="/register" 
           key={item.id}
           className={`menu-item ${item.id === 'delete-account' ? 'danger' : ''}`}
           onClick={() => handleMenuClick(item.id)}

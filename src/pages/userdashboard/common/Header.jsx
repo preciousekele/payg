@@ -23,7 +23,7 @@ const Header = () => {
   }, []);
 
   const handleViewPackage = () => {
-    navigate("/PayG/userdashboard/insurancepackages");
+    navigate("/userdashboard/insurancepackages");
   };
 
   return (

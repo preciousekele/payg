@@ -29,7 +29,7 @@ const Transfer = () => {
 
   return (
     <div className="transfer-payment-container">
-      <button className="back-button" onClick={() => navigate("/PayG/userdashboard/home")}>
+      <button className="back-button" onClick={() => navigate("/userdashboard/home")}>
         <ArrowLeft /> Transfer Payment
       </button>
 

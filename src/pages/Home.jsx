@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "./images/Logopagy.png";
 import "boxicons";
 import "boxicons/css/boxicons.min.css";
-import "./home.css";
+import "./Home.css";
 import Hero from "./hero/Hero";
 import About from "./about/About";
 import Goals from "./goal/Goal";

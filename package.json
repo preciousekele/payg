@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -r https://github.com/preciousekele/payg.git"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.15",
