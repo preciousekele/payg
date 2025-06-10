@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./LoginSignup.css";
+import "./LoginSignUp.css";
 
 function LoginSignup() {
   const [activeForm, setActiveForm] = useState("login");
