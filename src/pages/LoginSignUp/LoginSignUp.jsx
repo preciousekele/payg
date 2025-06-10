@@ -38,7 +38,8 @@ function LoginSignup() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/auth/login",
+        // "http://localhost:8080/api/auth/login"
+        "https://paygbackend.onrender.com/api/auth/login",
         loginData
       );
 
@@ -84,7 +85,8 @@ function LoginSignup() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/auth/register",
+        // "http://localhost:8080/api/auth/register"
+        "https://paygbackend.onrender.com/api/auth/register",
         registrationData,
         {
           headers: {
