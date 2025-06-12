@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./LoginSignUp.css";
@@ -13,7 +13,41 @@ function LoginSignup() {
     password: "",
     phoneNumber: "",
   });
+  // Add loading states
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
+  
+  // Add error states
+  const [loginError, setLoginError] = useState("");
+  const [registerError, setRegisterError] = useState("");
+  
+  // Error timeout refs - using useRef instead of useState
+  const loginErrorTimeoutRef = useRef(null);
+  const registerErrorTimeoutRef = useRef(null);
+  
   const navigate = useNavigate();
+
+  // Function to set login error with auto-clear
+  const setLoginErrorWithTimeout = (error) => {
+    setLoginError(error);
+    if (loginErrorTimeoutRef.current) {
+      clearTimeout(loginErrorTimeoutRef.current);
+    }
+    loginErrorTimeoutRef.current = setTimeout(() => {
+      setLoginError("");
+    }, 5000);
+  };
+
+  // Function to set register error with auto-clear
+  const setRegisterErrorWithTimeout = (error) => {
+    setRegisterError(error);
+    if (registerErrorTimeoutRef.current) {
+      clearTimeout(registerErrorTimeoutRef.current);
+    }
+    registerErrorTimeoutRef.current = setTimeout(() => {
+      setRegisterError("");
+    }, 5000);
+  };
 
   useEffect(() => {
     const originalStyle = {
@@ -21,14 +55,45 @@ function LoginSignup() {
       background: document.body.style.background,
     };
 
+    // Cleanup timeouts on unmount
     return () => {
       document.body.style.overflow = originalStyle.overflow;
       document.body.style.background = originalStyle.background;
+      if (loginErrorTimeoutRef.current) {
+        clearTimeout(loginErrorTimeoutRef.current);
+      }
+      if (registerErrorTimeoutRef.current) {
+        clearTimeout(registerErrorTimeoutRef.current);
+      }
     };
   }, []);
 
-  const login = () => setActiveForm("login");
-  const register = () => setActiveForm("register");
+  const login = () => {
+    setActiveForm("login");
+    setLoginError(""); // Clear login error when switching forms
+    setRegisterError(""); // Clear register error when switching forms
+    // Clear any existing timeouts
+    if (loginErrorTimeoutRef.current) {
+      clearTimeout(loginErrorTimeoutRef.current);
+    }
+    if (registerErrorTimeoutRef.current) {
+      clearTimeout(registerErrorTimeoutRef.current);
+    }
+  };
+  
+  const register = () => {
+    setActiveForm("register");
+    setLoginError(""); // Clear login error when switching forms
+    setRegisterError(""); // Clear register error when switching forms
+    // Clear any existing timeouts
+    if (loginErrorTimeoutRef.current) {
+      clearTimeout(loginErrorTimeoutRef.current);
+    }
+    if (registerErrorTimeoutRef.current) {
+      clearTimeout(registerErrorTimeoutRef.current);
+    }
+  };
+  
   const goToHome = (e) => {
     e.preventDefault();
     navigate("/");
@@ -36,9 +101,16 @@ function LoginSignup() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoggingIn(true);
+    setLoginError(""); // Clear previous errors
+    
+    // Clear any existing timeout when starting new login attempt
+    if (loginErrorTimeoutRef.current) {
+      clearTimeout(loginErrorTimeoutRef.current);
+    }
+    
     try {
       const response = await axios.post(
-        // "http://localhost:8080/api/auth/login"
         "https://paygbackend.onrender.com/api/auth/login",
         loginData
       );
@@ -46,7 +118,7 @@ function LoginSignup() {
       if (response.data && response.data.token) {
         // Store authentication data in localStorage
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("authToken", response.data.token); // For Balance component
+        localStorage.setItem("authToken", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
         
         // Store individual user data for easy access
@@ -59,18 +131,27 @@ function LoginSignup() {
         // Navigate to dashboard
         navigate("/userdashboard");
       } else {
-        alert("Login failed: Invalid response");
+        setLoginErrorWithTimeout("Login failed: Invalid response");
       }
     } catch (error) {
       console.error("Login error:", error);
-      alert(
-        "Login failed: " + (error.response?.data?.message || error.message)
+      setLoginErrorWithTimeout(
+        error.response?.data?.message || error.message || "Login failed. Please try again."
       );
+    } finally {
+      setIsLoggingIn(false);
     }
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setIsRegistering(true);
+    setRegisterError(""); // Clear previous errors
+
+    // Clear any existing timeout when starting new registration attempt
+    if (registerErrorTimeoutRef.current) {
+      clearTimeout(registerErrorTimeoutRef.current);
+    }
 
     const registrationData = {
       firstName: registerData.firstName,
@@ -80,12 +161,10 @@ function LoginSignup() {
       phoneNumber: registerData.phoneNumber,
     };
 
-    // Debug: Log what we're sending
     console.log("Sending registration data:", registrationData);
 
     try {
       const response = await axios.post(
-        // "http://localhost:8080/api/auth/register"
         "https://paygbackend.onrender.com/api/auth/register",
         registrationData,
         {
@@ -98,7 +177,7 @@ function LoginSignup() {
       if (response.data && response.data.token) {
         // Store authentication data in localStorage
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("authToken", response.data.token); // For Balance component
+        localStorage.setItem("authToken", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
         
         // Store individual user data for easy access
@@ -111,14 +190,15 @@ function LoginSignup() {
         // Navigate to dashboard
         navigate("/userdashboard");
       } else {
-        alert("Registration failed: Invalid response");
+        setRegisterErrorWithTimeout("Registration failed: Invalid response");
       }
     } catch (error) {
       console.error("Registration error:", error);
-      alert(
-        "Registration failed: " +
-          (error.response?.data?.message || error.message)
+      setRegisterErrorWithTimeout(
+        error.response?.data?.message || error.message || "Registration failed. Please try again."
       );
+    } finally {
+      setIsRegistering(false);
     }
   };
 
@@ -176,6 +256,7 @@ function LoginSignup() {
                   setLoginData({ ...loginData, email: e.target.value })
                 }
                 required
+                disabled={isLoggingIn}
               />
               <i className="bx bx-user"></i>
             </div>
@@ -189,6 +270,7 @@ function LoginSignup() {
                   setLoginData({ ...loginData, password: e.target.value })
                 }
                 required
+                disabled={isLoggingIn}
               />
               <i className="bx bx-lock-alt"></i>
             </div>
@@ -196,10 +278,19 @@ function LoginSignup() {
               <input
                 type="submit"
                 className="login-signup-submit"
-                value="Sign In"
+                value={isLoggingIn ? "Signing in..." : "Sign In"}
+                disabled={isLoggingIn}
               />
             </div>
           </form>
+          
+          {/* Login Error Message */}
+          {loginError && (
+            <div className="login-signup-error-message">
+              {loginError}
+            </div>
+          )}
+          
           <div className="login-signup-two-col">
             <div className="login-signup-one">
               <input type="checkbox" id="login-check" />
@@ -253,6 +344,7 @@ function LoginSignup() {
                     })
                   }
                   required
+                  disabled={isRegistering}
                 />
                 <i className="bx bx-user"></i>
               </div>
@@ -269,6 +361,7 @@ function LoginSignup() {
                     })
                   }
                   required
+                  disabled={isRegistering}
                 />
                 <i className="bx bx-user"></i>
               </div>
@@ -283,6 +376,7 @@ function LoginSignup() {
                   setRegisterData({ ...registerData, email: e.target.value })
                 }
                 required
+                disabled={isRegistering}
               />
               <i className="bx bx-envelope"></i>
             </div>
@@ -299,6 +393,7 @@ function LoginSignup() {
                   })
                 }
                 required
+                disabled={isRegistering}
               />
               <i className="bx bx-phone"></i>
             </div>
@@ -312,6 +407,7 @@ function LoginSignup() {
                   setRegisterData({ ...registerData, password: e.target.value })
                 }
                 required
+                disabled={isRegistering}
               />
               <i className="bx bx-lock-alt"></i>
             </div>
@@ -319,10 +415,19 @@ function LoginSignup() {
               <input
                 type="submit"
                 className="login-signup-submit"
-                value="Register"
+                value={isRegistering ? "Signing up..." : "Sign Up"}
+                disabled={isRegistering}
               />
             </div>
           </form>
+          
+          {/* Register Error Message */}
+          {registerError && (
+            <div className="login-signup-error-message">
+              {registerError}
+            </div>
+          )}
+          
           <div className="login-signup-two-col">
             <div className="login-signup-one">
               <input type="checkbox" id="register-check" />

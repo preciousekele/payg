@@ -1,8 +1,10 @@
 import  { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
+  const location = useLocation();
+  const isUserDashboard = location.pathname.includes('/userdashboard');
   const [initials, setInitials] = useState("");
   const navigate = useNavigate();
 
@@ -27,7 +29,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header">
+      <header className={`header ${isUserDashboard ? 'header-dashboard' : ''}`}>
       <button className="switch-btn" onClick={handleViewPackage}>
         View Packages
       </button>
