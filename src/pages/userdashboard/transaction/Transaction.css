@@ -83,6 +83,14 @@
   background-color: #f9fafb;
 }
 
+.error-container button {
+  color: red;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .transaction-list {
   background: white;
   border-radius: 16px;

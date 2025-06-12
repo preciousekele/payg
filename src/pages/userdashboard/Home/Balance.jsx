@@ -32,7 +32,7 @@ const Balance = () => {
         console.log('Fetching balance for:', { email: userEmail, phoneNumber: userPhoneNumber });
 
         const res = await axios.get(
-          `http://localhost:8080/api/total-balance?email=${userEmail}&phoneNumber=${userPhoneNumber}`
+           `https://paygbackend.onrender.com/api/total-balance?email=${userEmail}&phoneNumber=${userPhoneNumber}`
         );
 
         console.log('Balance response:', res.data);

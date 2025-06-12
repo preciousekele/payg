@@ -55,26 +55,29 @@ const Airtime = () => {
 
     try {
       // Get token from localStorage (adjust based on your auth implementation)
-      const token = localStorage.getItem('authToken') || localStorage.getItem('token');
-      
+      const token =
+        localStorage.getItem("authToken") || localStorage.getItem("token");
+
       if (!token) {
-        throw new Error('Authentication token not found');
+        throw new Error("Authentication token not found");
       }
 
-      const amount = parseFloat(customAmount || selectedAmount.replace(/[₦,]/g, ""));
-      
+      const amount = parseFloat(
+        customAmount || selectedAmount.replace(/[₦,]/g, "")
+      );
+
       const requestBody = {
         telecom: selectedNetwork.toUpperCase(),
         phoneNumber: phoneNumber.trim(),
         amount: amount,
-        keyword: keyword
+        keyword: keyword,
       };
 
       console.log("Sending request:", requestBody);
 
       // Use the correct server port (8080) and API path
       const getApiUrl = () => {
-        const baseUrl = 'http://localhost:8080';
+        const baseUrl = "https://paygbackend.onrender.com";
         return `${baseUrl}/api/airtime/subscribe`;
       };
 
@@ -82,12 +85,12 @@ const Airtime = () => {
       console.log("API URL:", apiUrl);
 
       const response = await fetch(apiUrl, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(requestBody)
+        body: JSON.stringify(requestBody),
       });
 
       console.log("Response status:", response.status);
@@ -95,18 +98,23 @@ const Airtime = () => {
 
       // Handle different response types
       let data;
-      const contentType = response.headers.get('content-type');
-      
-      if (contentType && contentType.includes('application/json')) {
+      const contentType = response.headers.get("content-type");
+
+      if (contentType && contentType.includes("application/json")) {
         data = await response.json();
       } else {
         // If it's not JSON, get the text response for debugging
         const textResponse = await response.text();
         console.error("Non-JSON response:", textResponse);
-        
+
         // Check if it's an HTML error page or redirect
-        if (textResponse.includes('<!DOCTYPE html>') || textResponse.includes('<html>')) {
-          throw new Error('Server returned HTML page instead of API response. Check if the API endpoint is correct.');
+        if (
+          textResponse.includes("<!DOCTYPE html>") ||
+          textResponse.includes("<html>")
+        ) {
+          throw new Error(
+            "Server returned HTML page instead of API response. Check if the API endpoint is correct."
+          );
         } else {
           throw new Error(`Server returned: ${textResponse}`);
         }
@@ -130,7 +138,10 @@ const Airtime = () => {
         // Handle API error responses
         setTimeout(() => {
           setIsProcessing(false);
-          const errorMessage = data?.message || data?.error || "Transaction failed. Please try again.";
+          const errorMessage =
+            data?.message ||
+            data?.error ||
+            "Transaction failed. Please try again.";
           console.error("Transaction failed:", errorMessage);
         }, 3000);
       }
@@ -138,20 +149,21 @@ const Airtime = () => {
       console.error("Error processing transaction:", error);
       setTimeout(() => {
         setIsProcessing(false);
-        
+
         // Log more specific error messages
         let errorMessage = "An error occurred. Please try again.";
-        
-        if (error.message.includes('Failed to fetch')) {
-          errorMessage = "Unable to connect to server. Please check your internet connection.";
-        } else if (error.message.includes('Authentication token not found')) {
+
+        if (error.message.includes("Failed to fetch")) {
+          errorMessage =
+            "Unable to connect to server. Please check your internet connection.";
+        } else if (error.message.includes("Authentication token not found")) {
           errorMessage = "Please log in again to continue.";
-        } else if (error.message.includes('HTML page')) {
+        } else if (error.message.includes("HTML page")) {
           errorMessage = "Server configuration error. Please contact support.";
         } else {
           errorMessage = error.message;
         }
-        
+
         console.error("Final error:", errorMessage);
       }, 3000);
     }
@@ -279,7 +291,9 @@ const Airtime = () => {
         <div className="processing-overlay">
           <div className="processing-message">
             <div className="processing-spinner"></div>
-            <p className="processing-text">Transaction processing, confirming...</p>
+            <p className="processing-text">
+              Transaction processing, confirming...
+            </p>
           </div>
         </div>
       )}
@@ -306,7 +320,9 @@ const Airtime = () => {
 
               <div className="confirm-row">
                 <span className="confirm-label">Network</span>
-                <span className="confirm-value">{selectedNetwork.toUpperCase()}</span>
+                <span className="confirm-value">
+                  {selectedNetwork.toUpperCase()}
+                </span>
               </div>
 
               <div className="confirm-row">
@@ -351,8 +367,8 @@ const Airtime = () => {
               </div>
             </div>
 
-            <button 
-              className="confirm-button" 
+            <button
+              className="confirm-button"
               onClick={handleConfirm}
               disabled={isProcessing}
             >

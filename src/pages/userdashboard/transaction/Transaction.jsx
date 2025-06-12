@@ -15,9 +15,9 @@ const Transaction = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const token = localStorage.getItem('token'); // Assuming you store the auth token in localStorage
+        const token = localStorage.getItem('token'); 
         
-        const response = await fetch('http://localhost:8080/api/airtime/airtime-history', {
+        const response = await fetch('https://paygbackend.onrender.com/api/airtime/airtime-history', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -33,8 +33,8 @@ const Transaction = () => {
         
         // Transform the backend data to match the frontend structure
         const transformedTransactions = data.data.map((transaction, index) => ({
-          id: index + 1, // Since backend doesn't provide ID, we'll use index
-          type: 'airtime', // All transactions from this endpoint are airtime
+          id: index + 1, 
+          type: 'airtime', 
           title: 'Airtime Payment',
           date: formatDate(transaction.createdAt),
           amount: `₦${transaction.amountDeducted.toFixed(2)}`,

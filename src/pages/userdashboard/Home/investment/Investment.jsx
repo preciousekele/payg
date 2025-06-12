@@ -79,7 +79,7 @@ const Investment = ({ userEmail: propUserEmail }) => {
       setLoading(true);
       setError(null);
       
-      const response = await fetch(`http://localhost:8080/api/user/package?email=${encodeURIComponent(userEmail)}`);
+      const response = await fetch(`https://paygbackend.onrender.com/api/user/package?email=${encodeURIComponent(userEmail)}`);
       
       if (!response.ok) {
         throw new Error(`Failed to fetch package: ${response.statusText}`);
@@ -110,7 +110,7 @@ const Investment = ({ userEmail: propUserEmail }) => {
       
       const backendPackageValue = packages[packageType].backendValue;
       
-      const response = await fetch("http://localhost:8080/api/user/upgrade-package", {
+      const response = await fetch("https://paygbackend.onrender.com/api/user/upgrade-package", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
