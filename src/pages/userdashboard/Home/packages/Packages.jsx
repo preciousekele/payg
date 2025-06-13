@@ -77,7 +77,7 @@ const InsurancePackages = () => {
                   <p className="package-desc">{pkg.description}</p>
                   <div className="package-price">
                     <span className="price-amount">{pkg.price}</span>
-                    <span className="price-period">/month</span>
+                    <span className="price-period">/year</span>
                   </div>
                 </div>
 

@@ -219,7 +219,7 @@ const Investment = ({ userEmail: propUserEmail }) => {
           <p>{currentPackageData.description}</p>
           <div className="package-price">
             <span className="price">₦{currentPackageData.price}</span>
-            <span className="period">/month</span>
+            <span className="period">/year</span>
           </div>
         </div>
         <div className="current-badge">Current Plan</div>
@@ -275,7 +275,7 @@ const Investment = ({ userEmail: propUserEmail }) => {
                   
                   <div className="upgrade-price">
                     <span className="price">₦{packageData.price}</span>
-                    <span className="period">/month</span>
+                    <span className="period">/year</span>
                   </div>
 
                   <div className="upgrade-features">
