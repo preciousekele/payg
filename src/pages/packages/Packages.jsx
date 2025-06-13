@@ -11,7 +11,7 @@ const Packages = () => {
       icon: Shield,
       color: "bronze",
       price: "25,000",
-      period: "/month",
+      period: "/year",
       description: "Essential healthcare coverage for individuals",
       features: [
         "General practitioner visits",
@@ -26,7 +26,7 @@ const Packages = () => {
       icon: Star,
       color: "silver",
       price: "50,000",
-      period: "/month",
+      period: "/year",
       description: "Comprehensive coverage for families and individuals",
       features: [
         "All Basic plan benefits",
@@ -41,7 +41,7 @@ const Packages = () => {
       icon: Crown,
       color: "gold",
       price: "100,000",
-      period: "/month",
+      period: "/year",
       description: "Premium healthcare with exclusive benefits",
       features: [
         "All Standard plan benefits",
