@@ -4,7 +4,8 @@ import axios from "axios";
 import "./Balance.css";
 
 const Balance = () => {
-  const [totalAmount, setTotalAmount] = useState(null);
+  const [totalPackage, setTotalPackage] = useState(null);
+  const [balanceToPay, setBalanceToPay] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -29,14 +30,22 @@ const Balance = () => {
           return;
         }
 
-        console.log('Fetching balance for:', { email: userEmail, phoneNumber: userPhoneNumber });
+        console.log('Fetching package balance for:', { email: userEmail });
 
-        const res = await axios.get(
-           `https://paygbackend.onrender.com/api/total-balance?email=${userEmail}&phoneNumber=${userPhoneNumber}`
-        );
+        // Fetch package balance
+        const packageBalanceRes = await axios.get(`https://paygbackend.onrender.com/api/package-balance?email=${userEmail}`);
 
-        console.log('Balance response:', res.data);
-        setTotalAmount(res.data.totalAmount);
+        console.log('Package balance response:', packageBalanceRes.data);
+        
+        // Set both balances from package balance data
+        if (packageBalanceRes.data.data) {
+          setTotalPackage(packageBalanceRes.data.data.totalPackage);
+          setBalanceToPay(packageBalanceRes.data.data.balanceTbPaid);
+        } else {
+          // This should not happen with the updated backend, but kept as fallback
+          setTotalPackage(25000); // Default BASIC package
+          setBalanceToPay(25000);
+        }
         
       } catch (err) {
         console.error("Failed to fetch balance:", err.response?.data || err.message);
@@ -44,9 +53,6 @@ const Balance = () => {
         // Handle authentication errors
         if (err.response?.status === 401) {
           setError("Session expired. Please log in again.");
-          // Optionally redirect to login or clear localStorage
-          // localStorage.clear();
-          // window.location.href = '/login';
         } else {
           setError("Could not load balance");
         }
@@ -56,24 +62,30 @@ const Balance = () => {
     };
 
     fetchBalance();
-  }, []); // Empty dependency array since we're getting data from localStorage
+  }, []);
 
   return (
     <div className="balance-card">
       <div className="balance-info">
-        <span className="balance-label">Balance</span>
+        <span className="balance-label">Package Amount</span>
         {loading ? (
           <span className="balance-amount">Loading...</span>
         ) : error ? (
           <span className="balance-amount error">{error}</span>
         ) : (
-          <span className="balance-amount">₦{totalAmount?.toLocaleString()}.00</span>
+          <span className="balance-amount">₦{totalPackage?.toLocaleString()}.00</span>
+        )}
+        
+        {/* Balance to be paid section */}
+        <span className="balance-label balance-to-pay-label">Balance</span>
+        {loading ? (
+          <span className="balance-amount balance-to-pay-amount">Loading...</span>
+        ) : error ? (
+          <span className="balance-amount balance-to-pay-amount error">{error}</span>
+        ) : (
+          <span className="balance-amount balance-to-pay-amount">₦{balanceToPay?.toLocaleString()}.00</span>
         )}
       </div>
-      {/* <button className="add-money-btn">
-        <Plus size={16} />
-        Add Money
-      </button> */}
     </div>
   );
 };

@@ -383,6 +383,44 @@
   font-size: 14px;
 }
 
+.percentage-input-section {
+  margin-bottom: 20px;
+}
+
+.percentage-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.percentage-input {
+  flex: 1;
+  padding: 15px;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.percentage-symbol {
+  margin-left: 8px;
+  font-weight: bold;
+  color: #666;
+}
+
+.percentage-amount {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}
+.percentage-input:focus {
+  outline: none;
+  border: 2px solid#097f58;
+  background: #ffffff;
+}
+
+
+
 .confirm-button {
   width: 90%;
   padding: 16px;

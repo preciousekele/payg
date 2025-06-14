@@ -9,8 +9,8 @@ const Services = () => {
 
   const serviceItems = [
     { id: "airtime", label: "Airtime", icon: Smartphone, color: "purple" },
-    { id: "send-money", label: "Transfer Payment", icon: Send, color: "blue" },
-    { id: "card", label: "ATM Card", icon: CreditCard, color: "orange" },
+    // { id: "send-money", label: "Transfer Payment", icon: Send, color: "blue" },
+    // { id: "card", label: "ATM Card", icon: CreditCard, color: "orange" },
     { id: "investment", label: "Package Status", icon: TrendingUp, color: "teal" },
   ];
 

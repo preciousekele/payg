@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import "./Airtime.css";
 import { useNavigate } from "react-router-dom";
+import Receipt from "../../transaction/Receipt";
 
 const Airtime = () => {
   const [selectedNetwork, setSelectedNetwork] = useState("");
@@ -9,8 +10,11 @@ const Airtime = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [customAmount, setCustomAmount] = useState("");
   const [keyword, setKeyword] = useState("PayG");
+  const [percentage, setPercentage] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [showReceipt, setShowReceipt] = useState(false); // Add receipt state
+  const [transactionData, setTransactionData] = useState(null); // Add transaction data state
 
   const navigate = useNavigate();
 
@@ -23,14 +27,7 @@ const Airtime = () => {
   ];
 
   // Predefined amounts
-  const amounts = [
-    "₦50.00",
-    "₦100.00",
-    "₦200.00",
-    "₦500.00",
-    "₦1,000.00",
-    "₦2,000.00",
-  ];
+  const amounts = ["₦50", "₦100", "₦200", "₦500", "₦1,000", "₦2,000"];
 
   const handleAmountSelect = (amount) => {
     setSelectedAmount(amount);
@@ -43,8 +40,21 @@ const Airtime = () => {
     setSelectedAmount("");
   };
 
+  const handlePercentageChange = (e) => {
+    const value = e.target.value;
+    // Allow typing - only restrict when value is complete
+    if (value === "" || (!isNaN(value) && value <= 90)) {
+      setPercentage(value);
+    }
+  };
+
   const handlePay = () => {
-    if (selectedNetwork && (selectedAmount || customAmount) && phoneNumber) {
+    if (
+      selectedNetwork &&
+      (selectedAmount || customAmount) &&
+      phoneNumber &&
+      percentage
+    ) {
       setShowModal(true);
     }
   };
@@ -71,6 +81,7 @@ const Airtime = () => {
         phoneNumber: phoneNumber.trim(),
         amount: amount,
         keyword: keyword,
+        percentage: parseInt(percentage),
       };
 
       console.log("Sending request:", requestBody);
@@ -123,26 +134,53 @@ const Airtime = () => {
       console.log("Response data:", data);
 
       if (response.ok) {
-        // Transaction successful
+        // Transaction successful - prepare transaction data for receipt
+        const finalAmount = parseFloat(
+          customAmount || selectedAmount.replace(/[₦,]/g, "")
+        );
+        const finalPercentage = parseInt(percentage);
+        const calculatedPercentageAmount =
+          (finalAmount * finalPercentage) / 100;
+
+        const finalTransactionData = {
+          id: data.id || Date.now().toString(), // Use server ID or fallback
+          amount: finalAmount,
+          phoneNumber: phoneNumber.trim(),
+          network: selectedNetwork.toUpperCase(),
+          telecom: selectedNetwork.toUpperCase(),
+          keyword: keyword,
+          percentage: finalPercentage,
+          percentageAmount: calculatedPercentageAmount, // Add calculated percentage amount
+          date: new Date().toLocaleDateString(),
+          createdAt: new Date().toISOString(),
+          // Include server response data if available
+          ...(data.data && {
+            percentageAmount:
+              data.data.percentageAmount || calculatedPercentageAmount,
+            percentage: data.data.percentage || finalPercentage,
+          }),
+        };
+
+        console.log(
+          "Final transaction data being passed to receipt:",
+          finalTransactionData
+        );
+
         setTimeout(() => {
           setIsProcessing(false);
           console.log("Transaction successful:", data);
+
+          // Set transaction data and show receipt
+          setTransactionData(finalTransactionData);
+          setShowReceipt(true);
+
           // Reset form
           setSelectedNetwork("");
           setSelectedAmount("");
           setPhoneNumber("");
           setCustomAmount("");
           setKeyword("PayG");
-        }, 3000);
-      } else {
-        // Handle API error responses
-        setTimeout(() => {
-          setIsProcessing(false);
-          const errorMessage =
-            data?.message ||
-            data?.error ||
-            "Transaction failed. Please try again.";
-          console.error("Transaction failed:", errorMessage);
+          setPercentage("");
         }, 3000);
       }
     } catch (error) {
@@ -165,8 +203,14 @@ const Airtime = () => {
         }
 
         console.error("Final error:", errorMessage);
+        alert(errorMessage); // Show error to user
       }, 3000);
     }
+  };
+
+  const handleBackFromReceipt = () => {
+    setShowReceipt(false);
+    setTransactionData(null);
   };
 
   const getSelectedAmountValue = () => {
@@ -177,6 +221,19 @@ const Airtime = () => {
     const amount = customAmount || selectedAmount.replace(/[₦,]/g, "");
     return parseFloat(amount) || 0;
   };
+
+  const getPercentageAmount = () => {
+    const amount = getAmountNumeric();
+    const percentValue = parseInt(percentage) || 0;
+    return (amount * percentValue) / 100;
+  };
+
+  // Show receipt if transaction was successful
+  if (showReceipt && transactionData) {
+    return (
+      <Receipt transaction={transactionData} onBack={handleBackFromReceipt} />
+    );
+  }
 
   return (
     <div className="airtime-container">
@@ -260,6 +317,25 @@ const Airtime = () => {
           </div>
         </div>
 
+        {/* Percentage Input */}
+        <div className="input-section percentage-input-section">
+          <label className="input-label">Percentage (10-90%)</label>
+          <div className="percentage-input-wrapper">
+            <input
+              type="text"
+              placeholder="0"
+              value={percentage}
+              onChange={handlePercentageChange}
+              className="percentage-input"
+            />
+          </div>
+          {percentage && (
+            <div className="percentage-amount">
+              Percentage Amount: ₦{getPercentageAmount().toFixed(2)}
+            </div>
+          )}
+        </div>
+
         {/* Keyword Input */}
         <div className="input-section keyword-input-section">
           <label className="input-label">Keyword</label>
@@ -279,6 +355,9 @@ const Airtime = () => {
             !selectedNetwork ||
             (!selectedAmount && !customAmount) ||
             !phoneNumber ||
+            !percentage ||
+            parseInt(percentage) < 10 ||
+            parseInt(percentage) > 90 ||
             isProcessing
           }
         >
@@ -334,6 +413,18 @@ const Airtime = () => {
                 <span className="confirm-label">Amount</span>
                 <span className="confirm-value">
                   {getSelectedAmountValue()}
+                </span>
+              </div>
+
+              <div className="confirm-row">
+                <span className="confirm-label">Percentage</span>
+                <span className="confirm-value">{percentage}%</span>
+              </div>
+
+              <div className="confirm-row">
+                <span className="confirm-label">Percentage Amount</span>
+                <span className="confirm-value">
+                  ₦{getPercentageAmount().toFixed(2)}
                 </span>
               </div>
 
